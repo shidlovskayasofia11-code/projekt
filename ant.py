@@ -1,4 +1,3 @@
-
 from PIL import Image
 import random
 
@@ -18,6 +17,8 @@ class Ant:
         self.pixels = pillow_image.load()
         self.current_x = window_width // 2
         self.current_y = window_height // 2
+        self.directions = ['Up', 'Right', 'Down', 'Left']
+        self.direction = 'Up'
 
     def inverse_pixel(self):
         '''
@@ -45,3 +46,38 @@ class Ant:
         '''
         if 0 <= x < self.window_width and 0 <= y < self.window_height:
             return True
+
+    def random_movement(self):
+        '''
+        Popełnia randomowy ruch ze wszystkich możliwych
+        '''
+        valid_movements = []
+        possible_direct = [(0, -1), (0, 1), (-1, 0), (1, 0)]
+        for x, y in possible_direct:
+            new_x = self.current_x + x
+            new_y = self.current_y + y
+            if self.verify_position(new_x, new_y):
+                valid_movements.append((new_x, new_y))
+        self.current_x, self.current_y = random.choice(valid_movements)
+
+    def next_step(self):
+        '''
+        Popełnia następny krok
+        '''
+        current_dir = self.direction
+        x, y = 0, 0
+        if current_dir == "Up":
+            y = 1
+        elif current_dir == "Down":
+            y = -1
+        elif current_dir == "Left":
+            x = -1
+        elif current_dir == "Right":
+            x = 1
+        new_x = self.current_x + x
+        new_y = self.current_y + y
+        if self.verify_position(new_x, new_y):
+            self.current_x = new_x
+            self.current_y = new_y
+        else:
+            self.random_movement()
