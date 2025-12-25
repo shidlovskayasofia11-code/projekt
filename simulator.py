@@ -2,7 +2,13 @@ import os
 
 
 class Simulator:
+    '''
+    Klasa odpowiedzialna za pobranie wszystkich informacji od użytkownika
+    '''
     def __init__(self):
+        '''
+        Konstrukor klasy
+        '''
         self.window_height = 0
         self.window_width = 0
         self.chance_black = 0
@@ -12,6 +18,10 @@ class Simulator:
         self.console_informtion()
 
     def console_informtion(self):
+        '''
+        Metoda dla wypisywania komunikatów,pobrania ścieżki obrazu,
+        liczby kroków,wymiarów planszy,prawdopodobieństwa czarnych pól
+        '''
         print("---KONFIGURACJA MRÓWKI LANGTONA---")
         print("Wybierz tryb: ")
         print("1 - Białe tło")
