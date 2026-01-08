@@ -97,6 +97,11 @@ class Configuration:
         except Exception:
             print("Plik jest uszkodzony")
 
+    def ant_cycle(self):
+        self.ant.rotation()
+        self.ant.inverse_pixel()
+        self.ant.next_step()
+
     def start(self):
         '''
         Główna pętla symulacji
@@ -119,9 +124,7 @@ class Configuration:
         print(f"Rozpoczynam symulację na {self.steps} kroków.")
         print(f"Obrazy będą w folderze: {os.path.abspath(self.result_folder)}")
         for step in range(self.steps):
-            self.ant.rotation()
-            self.ant.inverse_pixel()
-            self.ant.next_step()
+            self.ant_cycle()
             ax, ay = self.ant.current_x, self.ant.current_y
             real_color_under_ant = self.pixels_access[ax, ay]
             self.pixels_access[ax, ay] = PINK_COLOR
