@@ -51,8 +51,7 @@ class Ant:
         '''
         Sprawdza,czy x i y są na planszy.
         '''
-        if 0 <= x < self.window_width and 0 <= y < self.window_height:
-            return True
+        return 0 <= x < self.window_width and 0 <= y < self.window_height
 
     def random_movement(self):
         '''
