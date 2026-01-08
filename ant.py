@@ -64,7 +64,8 @@ class Ant:
             new_y = self.current_y + y
             if self.verify_position(new_x, new_y):
                 valid_movements.append((new_x, new_y))
-        self.current_x, self.current_y = random.choice(valid_movements)
+        if len(valid_movements) > 0:
+            self.current_x, self.current_y = random.choice(valid_movements)
 
     def next_step(self):
         '''
